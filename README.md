@@ -1,2 +1,2 @@
-# Orchid
+# Tinkle
 Social media application
