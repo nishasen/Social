@@ -1,2 +1,2 @@
-# Tinkle
+# Social
 Social media application
