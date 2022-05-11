@@ -1,2 +1,2 @@
-# Connect
+# Orchid
 Social media application
