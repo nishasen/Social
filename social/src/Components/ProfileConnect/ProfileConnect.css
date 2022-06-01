@@ -1,0 +1,105 @@
+.profile-connect {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;  
+    position: relative;
+}
+
+.profile-connect-light {
+    background-color: var(--bg-modal-light);
+}
+
+.profile-connect-dark {
+    background-color: var(--bg-modal-dark);
+}
+
+.user-name-large {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 6rem;
+}
+
+.connect-align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect {
+    cursor: pointer;
+}
+
+.peer-list {
+    width: max-content;
+}
+
+.list-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lists {
+    height: max-content;
+    max-height: 15rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
+
+.follow-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+}
+
+.profile-img {
+    filter: brightness(75%);
+}
+
+.profile-card-detail:hover .profile-img {
+    filter: brightness(100%);
+}
+
+.profile-card-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.lists::-webkit-scrollbar {
+    width: 0.5rem;
+}
+  
+.lists::-webkit-scrollbar-track {
+    background-color: var(--light-grey);
+    border-radius: 0.5rem;
+}
+
+.lists::-webkit-scrollbar-thumb {
+  background-color: var(--grey);
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 400px) {
+
+    .profile-connect {
+        gap: 0.5rem;
+        padding: 0.2rem;
+    }
+
+    .user-name-large {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 5rem;
+    }
+
+}

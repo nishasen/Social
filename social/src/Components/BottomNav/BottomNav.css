@@ -1,0 +1,25 @@
+.bottom-nav {
+    display: none;
+}
+
+.bottom-nav-light {
+    background-color: var(--bg-light);
+}
+
+.bottom-nav-dark {
+    background-color: var(--bg-dark);
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .bottom-nav {
+        display: flex;
+        justify-content: space-evenly;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-bottom: 0.5rem;
+    }
+
+}
