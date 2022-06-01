@@ -1,0 +1,68 @@
+.modal-box {
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--bg-dark);
+}
+
+.profile-modal {
+    border: 1.5px solid var(--bg-dark);
+    padding: 0.2rem
+}
+
+.profile-set {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.textarea-style {
+    width: 100%; 
+    resize: vertical; 
+    box-sizing: border-box;
+    background: transparent;
+    border: transparent;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.modal-action-icons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.emoji-container {
+    position: absolute;
+    top: 3.5rem
+}
+
+.textarea-style:focus {
+    outline: transparent;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .modal-box {
+        width: 20rem;
+    }
+    
+}
+
+@media only screen and (max-width: 380px) {
+
+    .modal-box {
+        width: 15rem;
+    }
+    
+}

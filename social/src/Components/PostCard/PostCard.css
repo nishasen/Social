@@ -1,0 +1,114 @@
+.post-card {
+    width: 100%;
+    border: 0.5px solid var(--light-grey);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.post-header {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.post-header-style {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-navigate {
+    cursor: pointer;
+}
+
+.username-style {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.post-date {
+    color: var(--grey);
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
+
+.add-comment {
+    display: flex;
+    gap: 0.5rem
+}
+
+.people-comment {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.comment-profile {
+    margin-top: 0.4rem
+}
+
+.comment-user {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.input-comment {
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    outline: transparent;
+    border: 0.5px solid var(--light-grey);
+    background-color: inherit;
+}
+
+.all-comments {
+    height: max-content;
+    max-height: 10rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.all-comments::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.all-comments::-webkit-scrollbar-track {
+    background-color: var(--light-grey);
+    border-radius: 3rem;
+}
+
+.all-comments::-webkit-scrollbar-thumb {
+    background-color: var(--grey);
+    border-radius: 3rem;
+}
+
+.input-comment:focus {
+    outline: 2px solid var(--primary);
+}
+
+.likes-modal:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

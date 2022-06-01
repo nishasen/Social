@@ -1,0 +1,47 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 4.5rem;
+}
+
+.nav-light {
+    background-color: var(--bg-light);
+}
+
+.nav-dark {
+    background-color: var(--bg-dark);
+}
+
+.nav-logo {
+    margin-top: -0.5rem;
+    width: 7rem;
+    height: 100%;
+}
+
+.loggedin {
+    margin-top: -0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .navigation {
+        padding: 0 1rem;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+
+    .username {
+        display: none;
+    }
+    
+}
