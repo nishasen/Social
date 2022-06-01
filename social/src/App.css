@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Nunito&display=swap');
+
+/* font-family: 'Lato', sans-serif;
+font-family: 'Nunito', sans-serif; */
+
+:root {
+    --primary: #1976D2;
+    --primary-hover: #1565C0;
+    --bg-dark: #071e3d;
+    --bg-light: #fdfdfd;
+    --grey: #656972;
+    --light-grey: #D4D5D9;
+    --bg-modal-dark: #C9DDF8;
+    --bg-modal-light: #f5f5f5; 
+    --black: #000;
+    --white: #fff;
+}
+
+.App, .App-hide {
+    font-family: 'Nunito', sans-serif;
+    display: grid;
+    min-height: 100vh;
+    grid-auto-flow: column;
+    grid-template-rows: 5rem auto;
+}
+
+.App {
+    grid-template-columns: 13rem repeat(5, auto) 19rem;
+    grid-template-areas: 
+                        "nav nav nav nav nav nav nav"
+                        "aside body body body body body people";
+}
+
+.App-hide {
+    grid-template-columns: repeat(1, auto);
+    grid-template-areas: 
+                        "nav"
+                        "body";
+}
+
+.nav {
+    z-index: 2;
+    grid-area: nav;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.aside {
+    z-index: 1;
+    grid-area: aside;
+    position: fixed;
+    left: 0;
+    top: 5rem;
+}
+
+.body {
+    z-index: 0;
+    grid-area: body;
+}
+
+.people {
+    z-index: 1;
+    grid-area: people;
+    position: fixed;
+    right: 0;
+    top: 5rem;
+}
+
+.App-light {
+    background-color: var(--bg-light);
+}
+
+.App-dark {
+    background-color: var(--bg-dark);
+}
+
+@media only screen and (max-width: 900px) {
+    
+    .App {
+        min-height: 100vh;
+        grid-template-columns: 13rem repeat(4, auto);
+        grid-template-areas: 
+                        "nav nav nav nav nav"
+                        "aside body body body body";
+    }
+
+    .App-hide {
+        grid-template-columns: repeat(1, auto);
+        grid-template-areas: 
+                            "nav"
+                            "body";
+    }
+
+    .people {
+        display: none
+    }
+
+}
+
+.link {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .App {
+        min-height: 100vh;
+        grid-template-rows: 5rem auto 3.5rem;
+        grid-template-columns: repeat(1, auto);
+        grid-template-areas: 
+                        "nav"
+                        "body"
+                        "aside";
+    }
+
+    .App-hide {
+        grid-template-columns: repeat(1, auto);
+        grid-template-areas: 
+                            "nav"
+                            "body";
+    }
+
+    .aside {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .people {
+        display: none
+    }
+
+}
+
+
+
