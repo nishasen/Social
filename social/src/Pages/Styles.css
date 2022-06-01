@@ -1,0 +1,56 @@
+
+.landing {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem;
+}
+
+.hero {
+    height: 80vh;
+    width: 60vw;
+}
+
+.pages {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0rem 1rem 1rem 1rem;
+}
+
+.profile-setting {
+    margin: 0 auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.all-suggestions {
+    display: none;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .all-suggestions {
+        display: block;
+    }
+
+}
+
+@media only screen and (max-width: 840px) {
+
+    .landing {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        justify-content: flex-start;
+    }
+
+    .hero {
+        height: 50vh;
+        width: 95vw;
+    }
+    
+}
