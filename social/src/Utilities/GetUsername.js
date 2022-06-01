@@ -1,0 +1,1 @@
+export const GetUsername = (postUserId, allUser) => allUser?.find(user => user.userId === postUserId)?.data?.username;
