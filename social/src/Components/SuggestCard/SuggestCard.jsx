@@ -46,7 +46,7 @@ const SuggestCard = () => {
     useEffect(()=> {
       setFilteredData(Data.filter(user => user?.data?.firstname.toLowerCase().includes(debounceText) || user?.data?.lastname.toLowerCase().includes(debounceText)))
     }, [debounceText])
-    console.log(filteredData)
+    
   return (
     <div className="suggest-card">
         <input type="search" value={search} placeholder="Search" className={`search ${theme==="light" ? "search-light" : "search-dark"}`} onChange={(e)=>handleChange(e)}/>

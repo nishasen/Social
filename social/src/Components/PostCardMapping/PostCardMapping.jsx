@@ -14,7 +14,7 @@ const PostCardMapping = ({home, explore, bookmark, profile, user, notification})
   const userId = allUser?.find(user => user?.data?.username===username)?.userId;
   const firstname = allUser?.find(user => user?.data?.username===username)?.data?.firstname;
   const publicPost = posts?.filter(post => post.data.privacy === "public");
-  const homePost = posts?.filter(post => post.data.userId===token || currentUser?.following.find(user => user?.userId===post.data.userId));
+  const homePost = posts?.filter(post => post.data.userId===token || currentUser?.following?.find(user => user?.userId===post.data.userId));
   const bookmarkedPost = posts?.filter(post => currentUser?.bookmarks?.find(data=>data?.postId===post?.postId))
   const userPost = posts?.filter(post => post.data.userId === token);
   const otherUserPost = posts?.filter(post => post.data.userId === userId);
