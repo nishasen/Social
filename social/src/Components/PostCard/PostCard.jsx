@@ -185,7 +185,7 @@ const PostCard = ({post}) => {
         </form> 
         <div className="all-comments">
           {Comment?.map(comment =>
-          <div className="people-comment">
+          <div className="people-comment" key={comment?.userId}>
             <img src={comment?.avatar} className="profile profile-xs comment-profile" alt="comment profile"/>
             <div>
               <div className="comment-user">
