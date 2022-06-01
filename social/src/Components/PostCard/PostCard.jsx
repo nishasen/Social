@@ -8,7 +8,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import './PostCard.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAvatar, GetUsername, SetDate } from '../../Utilities';
+import { GetAvatar, GetUserData, GetUsername, SetDate } from '../../Utilities';
 import { LikePost, UnlikePost, PostComment, AddToBookmark, RemoveFromBookmark, DeletePost } from '../../Services';
 import { useNavigate } from 'react-router-dom';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -186,7 +186,7 @@ const PostCard = ({post}) => {
         <div className="all-comments">
           {Comment?.map(comment =>
           <div className="people-comment" key={comment?.userId}>
-            <img src={comment?.avatar} className="profile profile-xs comment-profile" alt="comment profile"/>
+            <img src={comment?.avatar} className="profile profile-xs comment-profile profile-navigate" alt="comment profile" onClick={()=>navigate(`/user/${GetUsername(GetUserData(comment?.userId, allUser)?.userId, allUser)}`, {replace: true})}/>
             <div>
               <div className="comment-user">
                 <Typography variant="h6" style={getFontStyles}>{comment?.firstname+" "+comment?.lastname}</Typography>
