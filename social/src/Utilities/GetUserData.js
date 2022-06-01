@@ -1,0 +1,1 @@
+export const GetUserData = (userId, allUser) => allUser?.find(user => user?.userId===userId);
