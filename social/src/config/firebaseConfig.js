@@ -1,10 +1,10 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBgNbaxwcOZbjEC8iMH9AMXmeK3rQseqOg",
-    authDomain: "social-2cf1f.firebaseapp.com",
-    projectId: "social-2cf1f",
-    storageBucket: "social-2cf1f.appspot.com",
-    messagingSenderId: "901390632564",
-    appId: "1:901390632564:web:42b301edd5feae3ce23321"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGEING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APPID
   };
 
 export default firebaseConfig;
