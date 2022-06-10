@@ -51,10 +51,31 @@
     outline: transparent;
 }
 
+.image-name {
+    background-color: var(--bg-dark);
+    color: var(--white);
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.image-name-resize {
+    width: 20rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 @media only screen and (max-width: 500px) {
 
     .modal-box {
         width: 20rem;
+    }
+
+    .image-name-resize {
+        width: 15rem;
     }
     
 }
@@ -63,6 +84,10 @@
 
     .modal-box {
         width: 15rem;
+    }
+
+    .image-name-resize {
+        width: 10rem;
     }
     
 }

@@ -31,7 +31,7 @@ const PostCard = ({post}) => {
   }
   const [inputComment, setInputComment] = useState(defaultForm);
   const { postId, data } = post;
-  const {firstname, lastname, date, content, likes, Comment, privacy, userId} = data;
+  const {firstname, lastname, date, content, likes, Comment, privacy, image, userId} = data;
   const avatar = GetAvatar(userId, allUser);
   const finalDate = SetDate(date);
   const [openModal, setOpenModal] = useState(false);
@@ -64,8 +64,7 @@ const PostCard = ({post}) => {
             <div className="username-style">
               <Typography variant="h6" style={getStyles}>{firstname + " " + lastname}</Typography>
               <Typography variant="caption" className="post-date">{finalDate}</Typography>
-            </div>
-            
+            </div>   
             <div className="username-style">
               <Typography variant="caption" className="post-date">@{username}</Typography>
               <Chip label={privacy} size="small" color="secondary" variant={privacy==="private" ? "outlined" : "contained"}/>
@@ -119,6 +118,10 @@ const PostCard = ({post}) => {
       <article className="post-desc" style={getStyles}>
         {content}
       </article>
+      {image && 
+      <article className="post-image-desc" style={getStyles}>
+        <img src={image} alt="post detail" className="post-image"/>
+      </article>}
       <section className="post-actions">
         <div>
           {likes?.find(user => user?.userId===token) ? 

@@ -40,6 +40,15 @@
     color: var(--grey);
 }
 
+.post-image-desc {
+    display: flex;
+    justify-content: center;
+}
+
+.post-image {
+    width: 30%;
+}
+
 .post-actions {
     display: flex;
     justify-content: space-between;

@@ -9,9 +9,11 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import CircularProgress from '@mui/material/CircularProgress';
 import Picker from 'emoji-picker-react';
 import AllInboxIcon from '@mui/icons-material/AllInbox';
-import { Box, Typography, Modal, IconButton, Stack, Chip, TextareaAutosize } from '@mui/material';
+import { Box, Typography, Modal, IconButton, Stack, Chip, TextareaAutosize, LinearProgress } from '@mui/material';
 import { AddPost, getAllPost, EditPost } from '../../Services';
 import { showToast } from '../../Features';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from '../../firebase';
 
 const style = {
     display: "flex",
@@ -34,6 +36,7 @@ const PostModal = ({open, setOpen, edit}) => {
       lastname: '',
       date: '',
       content: '',
+      image: '',
       privacy: 'private',
       likes : [],
       Comment : []
@@ -42,8 +45,11 @@ const PostModal = ({open, setOpen, edit}) => {
     const [openEmoji, setOpenEmoji] = useState(false);
     const [progress, setProgress] = useState(100);
     const [submitMode, setSubmitMode] = useState(false);
+    const [file, setFile] = useState(null);
+    const [imageName, setImageName] = useState('');
     const [chosenEmoji, setChosenEmoji] = useState(null);
     const [form, setForm] = useState(defaultForm);
+    const [upload, setUpload] = useState(false);
     const handleClose = () => setOpen(false);
 
     const Input = styled('input')({
@@ -63,15 +69,73 @@ const PostModal = ({open, setOpen, edit}) => {
                 content: post?.data?.content,
                 privacy: post?.data?.privacy,
                 likes : post?.data?.likes,
-                Comment : post?.data?.Comment})
+                Comment : post?.data?.Comment,
+                image : post?.data?.image})
     }
+    
     useEffect(()=> {
       edit && setEditPost();
+      edit && setImageName(post?.data?.image);
     }, [open])
-
+    console.log(form)
     useEffect(()=> {
       setForm({...form, content: form.content + (chosenEmoji ? chosenEmoji.emoji.toString() : "")})
     }, [chosenEmoji])
+
+    useEffect(() => {
+      const uploadFile = () => {
+        const name = new Date().getTime() + file.name;
+        setImageName(name);
+        const storageRef = ref(storage, `/posts/` + name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+  
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              progress===0 ? setUpload(true) : setUpload(false);
+            switch (snapshot.state) {
+              case "paused":
+                break;
+              case "running":
+                break;
+              default:
+                break;
+            }
+          },
+          (error) => {
+            switch (error.code) {
+              case "storage/unauthorized":
+                // User doesn't have permission to access the object
+                dispatch(
+                  showToast({ text: "you don't have access", severity: "warning" })
+                );
+                break;
+              case "storage/canceled":
+                // User canceled the upload
+                dispatch(
+                  showToast({ text: "you canceled the upload", severity: "info" })
+                );
+                break;
+              case "storage/unknown":
+                dispatch(
+                  showToast({ text: "Something went wrong", severity: "error" })
+                );
+                break;
+              default:
+                break;
+            }
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log(downloadURL)
+              setForm((prev) => ({ ...prev, image: downloadURL }));
+            });
+          }
+        );
+      };
+      file && uploadFile();
+    }, [file]);
 
     const handleChange = (e) => {
       const value = e.target.value;
@@ -81,7 +145,6 @@ const PostModal = ({open, setOpen, edit}) => {
         firstname: user.firstname,
         lastname: user.lastname,
         userId: token,
-        // date: edit ? post?.data?.date : new Date().split['U'][0]
       })
         setChosenEmoji(null)
     }
@@ -89,6 +152,12 @@ const PostModal = ({open, setOpen, edit}) => {
     useEffect(()=>{
       progress<0 ? setSubmitMode(true) : setSubmitMode(false);
     }, [progress])
+
+    const imageDelete = () => {
+      setForm({...form, image: ''});
+      setFile(null);
+      setImageName('');
+    }
 
     const handleSubmit = async(e) => {
       e.preventDefault();
@@ -99,6 +168,7 @@ const PostModal = ({open, setOpen, edit}) => {
         setForm({
           date: '',
           content: '',
+          image: '',
           firstname: '',
           lastname: '',
           userId: '',
@@ -107,11 +177,13 @@ const PostModal = ({open, setOpen, edit}) => {
           Comment : []});
         dispatch(getAllPost())  
         handleClose();
-        setOpenEmoji(false)
+        setOpenEmoji(false);
       } else {
         dispatch(showToast({text: "Add your thoughts to post", severity: "warning"}))
       }
     }
+
+    console.log(form)
 
   return (
     <div className="modal">
@@ -146,10 +218,21 @@ const PostModal = ({open, setOpen, edit}) => {
                 className="textarea-style"
                 value={form.content}
                 onChange={(e)=>handleChange(e)}/>
+              {upload ? 
+                <LinearProgress /> 
+                :
+                <> 
+                {imageName && 
+                <div className="image-name">
+                  <Typography className="image-name-resize">{imageName}</Typography>
+                  <IconButton onClick={imageDelete}><CloseIcon color="primary"/></IconButton>
+                </div>}
+                </>
+              } 
               <div className="modal-actions">
                 <div className="modal-action-icons">
                   <label htmlFor="icon-button-file">
-                    <Input accept="image/*" id="icon-button-file" type="file" />
+                    <Input accept="image/*" id="icon-button-file" type="file" onChange={(e)=>setFile(e.target.files[0])}/>
                     <IconButton color="primary" aria-label="upload picture" component="span">
                       <PhotoCamera />
                     </IconButton>
