@@ -15,3 +15,4 @@ export { EditPost } from './EditPost';
 export { getUser } from './getUser';
 export { getAllUser } from './getAllUser';
 export { getAllPost } from './getAllPost';
+export { GuestLogin } from './GuestLogin';

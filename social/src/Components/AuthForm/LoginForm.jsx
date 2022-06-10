@@ -10,7 +10,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { LoginUser } from '../../Services';
+import { LoginUser, GuestLogin } from '../../Services';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
@@ -58,6 +58,9 @@ const LoginForm = () => {
           </div>
           <LoadingButton variant="contained" type="submit" endIcon={<LoginIcon />} loading={loading} loadingPosition="end" fullWidth>
             Login
+          </LoadingButton>
+          <LoadingButton variant="outlined" type="submit" endIcon={<LoginIcon />} loading={loading} loadingPosition="end" onClick={()=>GuestLogin({email:'nishasen@gmail.com', password:'nisha1234'}, navigate, dispatch)} fullWidth>
+            Test Login
           </LoadingButton>
           <div className="account-check" style={{color: changeColor}}>
             Do not have an acount? 
