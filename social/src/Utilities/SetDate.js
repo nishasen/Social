@@ -1,7 +1,9 @@
 export const SetDate = (date) => {
-    const formattedDate = date.split(",")[0].split("/").map(char => char.length===1 ? "0"+char : char);
-    const shiftDate = formattedDate.shift();
-    formattedDate.splice(1, 0, shiftDate);
-    const finalDate = formattedDate.join("-");
-    return finalDate;
+    const convertingDate = new Date(date);
+    const year = convertingDate.getFullYear()
+    let month = Number(convertingDate.getMonth()) + 1
+    let day = convertingDate.getDate()
+    month = month.toString().length !== 2 ? "0" + month : month;
+    day = day.toString().length !== 2 ? "0" + day : day;
+    return day + "/" + month + "/" + year;
 }

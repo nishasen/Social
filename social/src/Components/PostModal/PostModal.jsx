@@ -81,7 +81,8 @@ const PostModal = ({open, setOpen, edit}) => {
         firstname: user.firstname,
         lastname: user.lastname,
         userId: token,
-        date: edit ? post?.data?.date : new Date().toLocaleString()})
+        // date: edit ? post?.data?.date : new Date().split['U'][0]
+      })
         setChosenEmoji(null)
     }
     
@@ -91,8 +92,10 @@ const PostModal = ({open, setOpen, edit}) => {
 
     const handleSubmit = async(e) => {
       e.preventDefault();
+      let convertingDate = new Date().toString();
+      convertingDate = convertingDate.split('G')[0].trim()
       if(form.content!=='') {
-        edit ? await EditPost(form, dispatch, post?.postId) : await AddPost(form, dispatch);
+        edit ? await EditPost({...form, date: post?.data?.date}, dispatch, post?.postId) : await AddPost({...form, date: convertingDate}, dispatch);
         setForm({
           date: '',
           content: '',
