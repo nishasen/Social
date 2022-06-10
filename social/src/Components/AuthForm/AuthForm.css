@@ -39,6 +39,17 @@
     gap: 0.5rem;
 }
 
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-icons {
+    position: absolute;
+    right: 0;
+    top: 0.5rem;
+}
+
 input[type="radio"] {
     display: none;
 }
