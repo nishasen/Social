@@ -15,10 +15,10 @@ const PostCardMapping = ({home, explore, bookmark, profile, user, notification})
   const firstname = allUser?.find(user => user?.data?.username===username)?.data?.firstname;
   const publicPost = posts?.filter(post => post.data.privacy === "public");
   const homePost = posts?.filter(post => post.data.userId===token || currentUser?.following?.find(user => user?.userId===post.data.userId));
-  const bookmarkedPost = posts?.filter(post => currentUser?.bookmarks?.find(data=>data?.postId===post?.postId))
-  const userPost = posts?.filter(post => post.data.userId === token);
-  const otherUserPost = posts?.filter(post => post.data.userId === userId);
-  const otherUserPublicPost = posts?.filter(post => post?.data?.userId === userId && post?.data?.privacy === "public");
+  const bookmarkedPost = posts?.filter(post => currentUser?.bookmarks?.find(data=>data?.postId===post?.postId)).sort((a, b) => new Date(b?.data?.date) - new Date(a?.data?.date));
+  const userPost = posts?.filter(post => post.data.userId === token).sort((a, b) => new Date(b?.data?.date) - new Date(a?.data?.date));
+  const otherUserPost = posts?.filter(post => post.data.userId === userId).sort((a, b) => new Date(b?.data?.date) - new Date(a?.data?.date));
+  const otherUserPublicPost = posts?.filter(post => post?.data?.userId === userId && post?.data?.privacy === "public").sort((a, b) => new Date(b?.data?.date) - new Date(a?.data?.date));
   return (
     <div className="postcard-mapping">
       {home && homePost?.map(post => <PostCard post={post} key={post.postId}/>)}

@@ -10,6 +10,7 @@ const initialState = {
   otherUser: {},
   token: localStorage.getItem('userId') || null,
   loading: false,
+  followLoading: false,
 };
 
 const AuthSlice = createSlice({
@@ -28,6 +29,9 @@ const AuthSlice = createSlice({
     },
     isLoading: (state, action) => {
       state.loading = action.payload
+    },
+    isFollowLoading: (state, action) => {
+      state.followLoading = action.payload
     },
     setOtherUser: (state, action) => {
       state.otherUser = action?.payload?.data;
@@ -57,5 +61,5 @@ const AuthSlice = createSlice({
   }
 });
 
-export const { checkLogin, loggedOut, isLoading, setOtherUser } = AuthSlice.actions;
+export const { checkLogin, loggedOut, isLoading, setOtherUser, isFollowLoading } = AuthSlice.actions;
 export default AuthSlice.reducer;

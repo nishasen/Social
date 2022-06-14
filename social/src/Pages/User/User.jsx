@@ -8,7 +8,7 @@ import { FollowUser, UnfollowUser } from '../../Services';
 
 const User = () => {
   const dispatch = useDispatch();  
-  const { otherUser, allUser, user, token, loading } = useSelector(state => state.auth)
+  const { otherUser, allUser, user, token, followLoading } = useSelector(state => state.auth)
   const { username } = useParams();
   const checkUser = allUser.find(user => user?.data?.username === username)
   dispatch(setOtherUser(checkUser))
@@ -19,14 +19,14 @@ const User = () => {
       <div className="profile-setting">
         {otherUser?.follower?.some(person => person.userId === token) ?
           <LoadingButton 
-            loading={loading}
+            loading={followLoading}
             variant="outlined" 
             onClick={()=>UnfollowUser(token, checkUser, user, dispatch)}>
             Following
           </LoadingButton>  
           :
           <LoadingButton 
-            loading={loading}
+            loading={followLoading}
             variant="contained" 
             onClick={()=>FollowUser(token, checkUser, user, dispatch)}>
             Follow

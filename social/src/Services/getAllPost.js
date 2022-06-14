@@ -15,5 +15,3 @@ export const getAllPost = createAsyncThunk('post/getAllPost', async() => {
         console.log(error)
     }
 })
-
-//, where("privacy", "==", "public")

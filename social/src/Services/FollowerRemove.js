@@ -1,10 +1,10 @@
 import { doc, updateDoc, arrayRemove } from "firebase/firestore";
 import {db} from '../firebase';
 import { getUser, getAllUser } from ".";
-import { isLoading, showToast } from "../Features";
+import { isFollowLoading, showToast } from "../Features";
 
 export const FollowerRemove = async(token, peer, user, dispatch) => {
-    dispatch(isLoading(true))
+    dispatch(isFollowLoading(true))
     try {
         const FollowRef = doc(db, "users", peer?.userId);
         const FollowerRef = doc(db, "users", token);
@@ -29,7 +29,7 @@ export const FollowerRemove = async(token, peer, user, dispatch) => {
     } catch(error) {
         dispatch(showToast({text: "Something went wrong", severity: "error"}))
     } finally { 
-        dispatch(isLoading(false))
+        dispatch(isFollowLoading(false))
     }
 }
 

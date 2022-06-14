@@ -23,7 +23,7 @@ const style = {
 
 const AllSuggestions = ({showSuggestions, setShowSuggestions, Users}) => {
     const { theme } = useSelector(state => state.theme);
-    const { allUser, token, user, loading } = useSelector(state => state.auth);
+    const { allUser, token, user, followLoading } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
   return (
@@ -56,7 +56,7 @@ const AllSuggestions = ({showSuggestions, setShowSuggestions, Users}) => {
                   </div>
                   {peer?.data?.follower?.some(person => person.userId === token) ?
                   <LoadingButton 
-                    loading={loading} 
+                    loading={followLoading} 
                     size="small" 
                     variant="outlined" 
                     onClick={()=>UnfollowUser(token, peer, user, dispatch)}>
@@ -64,7 +64,7 @@ const AllSuggestions = ({showSuggestions, setShowSuggestions, Users}) => {
                   </LoadingButton>
                   :
                   <LoadingButton 
-                    loading={loading}
+                    loading={followLoading}
                     size="small" 
                     variant="contained" 
                     onClick={()=>FollowUser(token, peer, user, dispatch)}>

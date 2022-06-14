@@ -24,7 +24,7 @@ const style = {
 const ProfileConnect = ({user, userId, followCheck}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { allUser, token, loading, user:currentUser } = useSelector(state => state.auth);
+  const { allUser, token, followLoading, user:currentUser } = useSelector(state => state.auth);
   const { posts } = useSelector(state => state.post);
   const { theme } = useSelector(state => state.theme)
   const [following, setFollowing] = useState(false);
@@ -77,7 +77,7 @@ const ProfileConnect = ({user, userId, followCheck}) => {
                     <>
                       {currentUser?.following?.some(person => person.userId === follower?.userId) ?
                       <LoadingButton
-                        loading={loading}  
+                        loading={followLoading}  
                         size="small" 
                         variant="outlined" 
                         onClick={()=>UnfollowUser(token, userData(follower?.userId), currentUser, dispatch)}>
@@ -85,7 +85,7 @@ const ProfileConnect = ({user, userId, followCheck}) => {
                       </LoadingButton>
                       :
                       <LoadingButton
-                        loading={loading}  
+                        loading={followLoading}  
                         size="small" 
                         variant="contained" 
                         onClick={()=>FollowUser(token, userData(follower?.userId), currentUser, dispatch)}>
@@ -94,7 +94,7 @@ const ProfileConnect = ({user, userId, followCheck}) => {
                     </>
                     :
                     <LoadingButton
-                      loading={loading}  
+                      loading={followLoading}  
                       size="small" 
                       variant="outlined" 
                       onClick={()=>FollowerRemove(token, userData(follower?.userId), currentUser, dispatch)}>
@@ -138,7 +138,7 @@ const ProfileConnect = ({user, userId, followCheck}) => {
                     <>
                       {currentUser?.following?.some(person => person.userId === following?.userId) ?
                       <LoadingButton
-                        loading={loading}  
+                        loading={followLoading}  
                         size="small" 
                         variant="outlined" 
                         onClick={()=>UnfollowUser(token, userData(following?.userId), currentUser, dispatch)}>
@@ -146,7 +146,7 @@ const ProfileConnect = ({user, userId, followCheck}) => {
                       </LoadingButton>
                       :
                       <LoadingButton
-                        loading={loading}  
+                        loading={followLoading}  
                         size="small" 
                         variant="contained" 
                         onClick={()=>FollowUser(token, userData(following?.userId), currentUser, dispatch)}>
@@ -155,7 +155,7 @@ const ProfileConnect = ({user, userId, followCheck}) => {
                     </>
                     :
                     <LoadingButton
-                      loading={loading}  
+                      loading={followLoading}  
                       size="small" 
                       variant="outlined" 
                       onClick={()=>UnfollowUser(token, userData(following?.userId), currentUser, dispatch)}>

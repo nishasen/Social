@@ -17,7 +17,7 @@ const SuggestCard = () => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [search, setSearch] = useState('');
     const { theme } = useSelector(state => state.theme)
-    const { allUser, token, user, loading } = useSelector(state => state.auth);
+    const { allUser, token, user, followLoading } = useSelector(state => state.auth);
     const Data = allUser.filter(person => person.userId!==token);
     const Users = Data?.filter(person => !user?.following?.some(data=>data?.userId===person?.userId))
     const TrimUsers = Users.length > 4 ? Users.slice(0, 4) : Users;
@@ -25,7 +25,7 @@ const SuggestCard = () => {
     const [filteredData, setFilteredData] = useState([]);
 
     const updateDebounceSearch = debounce(text => {
-      setDebounceText(text); 
+      setDebounceText(text.toLowerCase()); 
     }, 1000)
 
     const handleChange = (e) => {
@@ -101,7 +101,7 @@ const SuggestCard = () => {
                 </div>
                 {peer?.data?.follower?.some(person => person.userId === token) ?
                   <LoadingButton
-                    loading={loading}  
+                    loading={followLoading}  
                     size="small" 
                     variant="outlined" 
                     onClick={()=>UnfollowUser(token, peer, user, dispatch)}>
@@ -109,7 +109,7 @@ const SuggestCard = () => {
                   </LoadingButton>
                    :
                   <LoadingButton
-                    loading={loading}  
+                    loading={followLoading}  
                     size="small" 
                     variant="contained" 
                     onClick={()=>FollowUser(token, peer, user, dispatch)}>
