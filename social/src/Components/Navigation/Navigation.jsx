@@ -22,8 +22,8 @@ const Navigation = () => {
         <div className="loggedin">
             {userLogin ? 
             <>
-                <img src={user.avatar} alt='user' className="profile profile-md"/>
-                <Typography variant="caption" color="primary" className="username">@{user.username}</Typography>
+                <img src={user.avatar} alt='user' className="profile profile-md nav-profile" onClick={()=>navigate('/profile', {replace: true})}/>
+                <Typography variant="caption" color="primary" className="username nav-profile" onClick={()=>navigate('/profile', {replace: true})}>@{user.username}</Typography>
                 <IconButton 
                     color="primary" 
                     aria-label="user avatar" 
