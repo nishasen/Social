@@ -82,7 +82,7 @@ const SignupForm = () => {
             </div>
           </div>
           <LoadingButton variant="contained" type="submit" endIcon={<LoginIcon />} loading={loading} loadingPosition="end" fullWidth>Signup</LoadingButton>
-          <div className="account-check" style={{color: changeColor}}>Already have an acount? <Link to="/" className="link"><Button size="sm" endIcon={<ArrowForwardIosIcon fontSize="small"/>}>Login</Button></Link></div>
+          <div className="account-check" style={{color: changeColor}}>Already have an account? <Link to="/" className="link"><Button size="sm" endIcon={<ArrowForwardIosIcon fontSize="small"/>}>Login</Button></Link></div>
       </Form>)}
     </Formik>
   )

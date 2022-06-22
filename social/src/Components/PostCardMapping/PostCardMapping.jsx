@@ -4,6 +4,7 @@ import './PostCardMapping.css';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import Post from '../../Assets/Post.svg';
 
 const Posts = [1, 2, 3, 4, 5, 6]
 const PostCardMapping = ({home, explore, bookmark, profile, user, notification}) => {
@@ -21,7 +22,22 @@ const PostCardMapping = ({home, explore, bookmark, profile, user, notification})
   const otherUserPublicPost = posts?.filter(post => post?.data?.userId === userId && post?.data?.privacy === "public").sort((a, b) => new Date(b?.data?.date) - new Date(a?.data?.date));
   return (
     <div className="postcard-mapping">
-      {home && homePost?.map(post => <PostCard post={post} key={post.postId}/>)}
+      {home &&
+      <> 
+      {homePost?.length!==0 ? 
+        homePost?.map(post => <PostCard post={post} key={post.postId}/>)
+        :
+        <>
+          <Typography 
+            variant="h6" 
+            sx={{textAlign: "center", 
+                color: theme==="light"? "var(--black)": "var(--white)"}}>
+              Follow people or post to view posts here
+          </Typography>
+          <img src={Post} alt="post" className="home-post"/>
+        </>}
+      </>
+      }
       {explore && publicPost?.map(post => <PostCard post={post} key={post.postId}/>)}
       {bookmark && bookmarkedPost?.map(post => <PostCard post={post} key={post.postId}/>)}
       {profile && userPost?.map(post => <PostCard post={post} key={post.postId}/>)}

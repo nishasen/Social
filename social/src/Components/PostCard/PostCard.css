@@ -99,6 +99,10 @@
     gap: 0.5rem;
 }
 
+.name-nav {
+    cursor: pointer;
+}
+
 .all-comments::-webkit-scrollbar {
     width: 0.5rem;
 }

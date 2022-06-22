@@ -62,11 +62,11 @@ const PostCard = ({post}) => {
           <img src={avatar} alt="profile" className="profile profile-md profile-navigate" onClick={()=>navigate(`/user/${username}`, {replace: true})}/>
           <div className="post-user">
             <div className="username-style">
-              <Typography variant="h6" style={getStyles}>{firstname + " " + lastname}</Typography>
+              <Typography variant="h6" className="name-nav" style={getStyles} onClick={()=>navigate(`/user/${username}`, {replace: true})}>{firstname + " " + lastname}</Typography>
               <Typography variant="caption" className="post-date">{finalDate}</Typography>
             </div>   
             <div className="username-style">
-              <Typography variant="caption" className="post-date">@{username}</Typography>
+              <Typography variant="caption" className="post-date name-nav" onClick={()=>navigate(`/user/${username}`, {replace: true})}>@{username}</Typography>
               <Chip label={privacy} size="small" color="secondary" variant={privacy==="private" ? "outlined" : "contained"}/>
             </div>
           </div>

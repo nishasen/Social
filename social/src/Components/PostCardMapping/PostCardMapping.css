@@ -4,3 +4,18 @@
     gap: 1rem;
     box-sizing: border-box;
 }
+
+.home-post {
+    margin: 0 auto;
+    width: 20rem;
+    height: 20rem;
+}
+
+@media only screen and (max-width: 360px) {
+    
+    .home-post {
+        width: 15rem;
+        height: 15rem;
+    }
+
+}

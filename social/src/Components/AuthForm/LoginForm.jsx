@@ -32,10 +32,9 @@ const LoginForm = () => {
         .required('Email required'),
       password: Yup.string()
         .required('Password required')
-        .min(8, 'Password is too short, minimum 8 characters required')
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-          "Atleast One Uppercase, One Lowercase, One Number and one special case Character"
+          "Invalid password"
         ),
     })}
     onSubmit = {async(values, actions) => {
@@ -63,7 +62,7 @@ const LoginForm = () => {
             Test Login
           </LoadingButton>
           <div className="account-check" style={{color: changeColor}}>
-            Do not have an acount? 
+            Do not have an account? 
             <Link to="/signup" className="link">
               <Button size="sm" endIcon={<ArrowForwardIosIcon fontSize="small"/>}>Signup</Button>
             </Link>

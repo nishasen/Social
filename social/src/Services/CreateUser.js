@@ -20,8 +20,9 @@ export const CreateUser = async(userData, dispatch, navigate, actions) => {
       following: [],
       bookmarks: [],
     });
+    localStorage.setItem('userId', result.user.uid);  
     actions.resetForm();
-    navigate('/', {replace: true});
+    navigate('/home', {replace: true});
     dispatch(showToast({text: "Signed up successfully", severity: 'success'}));
   } catch(error) {
     dispatch(showToast({text: error.message, severity: 'error'}));

@@ -11,7 +11,7 @@ export const LoginUser = async(userData, actions, navigate, dispatch) => {
         navigate('/home', {replace: true});
         dispatch(showToast({text: "Logged in successfully", severity: "success"}));
       } catch(error) {
-        dispatch(showToast({text: "Login failed", severity: "error"}));
+        dispatch(showToast({text: "Login failed, try again", severity: "error"}));
       } finally {
           dispatch(isLoading(false));
       }
